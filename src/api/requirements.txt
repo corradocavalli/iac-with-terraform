@@ -1,0 +1,6 @@
+fastapi==0.63.0
+aiofiles==0.6.0
+uvicorn[standard]==0.13.4
+SQLAlchemy==1.4.7
+pydantic-sqlalchemy==0.0.8
+psycopg2==2.8.6

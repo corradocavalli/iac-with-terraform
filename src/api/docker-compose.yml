@@ -1,0 +1,13 @@
+# for now, we only need a postgres image...
+# But probably more to come later
+version: "3"
+services:
+  postgres:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=secretpassword
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=apidemo
+    restart: always

@@ -1,12 +1,25 @@
 
-ARG VARIANT="5.0"
-FROM mcr.microsoft.com/dotnet/sdk:${VARIANT}
+ARG PYTHON_VERSION="3.7.10"
+FROM python:${PYTHON_VERSION}-buster
+
 ARG TERRAFORM_VERSION="0.14.7"
 ENV DEBIAN_FRONTEND=noninteractive
+
+
+
+ADD .devcontainer/requirements.txt /tmp/requirements.txt
+ADD src/libs /workspaces/tf-api-post/src/libs
+
 RUN apt-get update \
-    && apt-get -y install --no-install-recommends build-essential unzip\
-    # Install the Azure CLI
-    && curl -sL https://aka.ms/InstallAzureCLIDeb | bash \
+    && apt-get install -y --no-install-recommends build-essential 
+
+# Install python libareries
+# As soon as possible, so we can override the docker-compose version later further down
+RUN pip install -r /tmp/requirements.txt \  
+    && pip install -e /workspaces/tf-api-post/src/libs \
+    && pip install uvicorn[standard]==0.13.4
+
+RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash \
     # Install Docker CE CLI
     && apt-get install -y apt-transport-https ca-certificates curl gnupg-agent software-properties-common lsb-release \
     && curl -fsSL https://download.docker.com/linux/$(lsb_release -is | tr '[:upper:]' '[:lower:]')/gpg | apt-key add - 2>/dev/null \
@@ -18,4 +31,5 @@ RUN apt-get update \
     && curl -sSL -o /tmp/docker-downloads/terraform.zip https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip \
     && unzip /tmp/docker-downloads/terraform.zip \
     && mv terraform /usr/local/bin 
+
 ENV DEBIAN_FRONTEND=dialog

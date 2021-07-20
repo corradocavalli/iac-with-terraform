@@ -2,6 +2,7 @@
 	"name": "TF_API dotnet",
 	"build": {
 		"dockerfile": "Dockerfile",
+		"context": ".."
 	},
 	"runArgs": [
 		"--network",

@@ -8,7 +8,7 @@ resource "azuread_application" "demo" {
   api {
 
     oauth2_permission_scope {
-      id                         = "96183846-204b-1366-82e1-5d2222eb4b9b"
+      id                         = "96183846-204b-1366-82e1-5d2222eb4b9b" 
       admin_consent_description  = "Allow the application to access API on behalf of the signed-in user."
       admin_consent_display_name = "Access API"
       enabled                    = true
@@ -35,11 +35,11 @@ resource "azuread_application" "demo" {
   }
 }
 
-# Add client secret to AZ AD App.
 resource "azuread_application_password" "demo" {
   application_object_id = azuread_application.demo.id
 }
 
+#We store info into key vault for convenience
 resource "azurerm_key_vault_secret" "api-client-id" {
   key_vault_id = var.keyvault_id
   name         = "api-client-id"

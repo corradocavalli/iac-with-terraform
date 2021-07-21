@@ -1,7 +1,7 @@
 import enum
 
 
-DEV_DATABASE_URI = "postgresql://postgres:sensesecretpassword@localhost:5432/apidemo"
+DEV_DATABASE_URI = "postgresql://postgres:secretpassword@localhost:5432/apidemo"
 
 
 class PrivacyLevel(enum.IntEnum):

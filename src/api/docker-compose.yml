@@ -1,5 +1,3 @@
-# for now, we only need a postgres image...
-# But probably more to come later
 version: "3"
 services:
   postgres:

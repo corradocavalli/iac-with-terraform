@@ -11,5 +11,5 @@ Example of how to use [Terraform](https://www.terraform.io/) to deploy following
 
 
 
-A detailed description of the content of this repository is available [here](https://medium.com/corrado-cavalli/how-to-setup-an-app-service-database-using-private-v-net-and-authorize-access-via-azure-active-589eb93dc982).
+This repository is described in detail in [this blog post](https://medium.com/corrado-cavalli/how-to-setup-an-app-service-database-using-private-v-net-and-authorize-access-via-azure-active-589eb93dc982).
 
